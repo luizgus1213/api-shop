@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "express": "^5.2.1",
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "dev": "tsx --watch src/server.ts",
+    "exemplo": "tsx --watch src/exemplo.ts",
+    "exercicio_tipagem": "tsx --watch src/exercicios/exercicio_tipagem.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "nodemon": "^3.1.11",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

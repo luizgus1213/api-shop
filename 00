@@ -1,0 +1,9 @@
+fazer uma validação nao podendo ter 2 cachorros com 2 nomes.
+varificar se existe ou nao um cachorro com o mesmo nome deixando ou nao cadastrar.
+
+
+criar uma rota e um controller  para poder cadastrar um usuario
+
+
+
+verificacao que nao pode cadastrar dois usuarios com 1 cpfs 

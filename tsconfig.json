@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    /* Opções Básicas */
+    "target": "es2020",
+    "module": "commonjs",
+    "outDir": "./dist", // Onde os arquivos compilados vão
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Opções de Verificação de Tipo Rigorosa */
+    "strict": true,               /* Habilita todas as opções de verificação de tipo rigorosa abaixo */
+    "noImplicitAny": true,        /* Erro em expressões com tipo 'any' implícito */
+    "strictNullChecks": true,     /* Quando true, null e undefined não são atribuíveis a outros tipos */
+    "strictFunctionTypes": true,  /* Verificação de tipo de função rigorosa */
+    "strictBindCallApply": true,  /* Verificação rigorosa em bind, call e apply */
+    "strictPropertyInitialization": true, /* Inicialização de propriedade rigorosa em classes */
+    "noImplicitThis": true,       /* Erro em expressões 'this' com tipo 'any' implícito */
+    "useUnknownInCatchVariables": true, // Garante que variáveis de catch tenham tipo 'unknown' em vez de 'any'
+
+    /* Opções Adicionais */
+    "skipLibCheck": true          /* Pula a verificação de tipo de arquivos de declaração (.d.ts) */
+  },
+  "include": ["src/**/*"] // Onde estão seus arquivos .ts
+}
