@@ -47,7 +47,22 @@ const atualizar_cliente = (req: Request, res: Response) => {
     if (nome) clientes[indice].nome = nome
     if (idade) clientes[indice].idade = idade
     if (telefone) clientes[indice].telefone = telefone
-    if (endereco) clientes[indice].endereco = endereco
+    
+    
+    
+    if (endereco){
+        if (endereco.país) clientes[indice].endereco.país = endereco.país 
+    if (endereco.estado) clientes[indice].endereco.estado = endereco.estado 
+    if (endereco.cep) clientes[indice].endereco.cep = endereco.cep 
+    if (endereco.cidade) clientes[indice].endereco.cidade = endereco.cidade
+    if (endereco.bairro) clientes[indice].endereco.bairro = endereco.bairro
+    if (endereco.numero_da_casa) clientes[indice].endereco.numero_da_casa = endereco.numero_da_casa
+    
+    if (!endereco.bloco) {
+    if (endereco.bloco) clientes[indice].endereco.bloco = endereco.bloco
+    }
+
+} 
 
     return res.json({
         mensagem: "Cliente atualizado com sucesso",
