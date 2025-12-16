@@ -47,7 +47,7 @@ const atualizar_cliente = (req: Request, res: Response) => {
     if (nome) clientes[indice].nome = nome
     if (idade) clientes[indice].idade = idade
     if (telefone) clientes[indice].telefone = telefone
-    
+     
     
     
     if (endereco){
