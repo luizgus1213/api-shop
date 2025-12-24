@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 import { clientes, animais } from "./database";
 import Animal from "./types/animal";
+import { sequelize } from "./database/sequelize";
+import { Cliente } from "./database/models/cliente";
+import { Endereco } from "./database/models/endereco";
 
 interface AnimalRequest extends Animal {
   cpf_dono: string;
@@ -48,23 +51,48 @@ const atualizar_cliente = (req: Request, res: Response) => {
   if (idade) clientes[indice].idade = idade;
   if (telefone) clientes[indice].telefone = telefone;
 
-  console.log(typeof endereco.cep);
-
   if (endereco) {
     if (endereco.país && typeof endereco.país === "string")
       clientes[indice].endereco.país = endereco.país;
+    else if (typeof endereco.país !== "string")
+      return res.status(400).json({ mensagem: "o país deve ser uma string" });
     if (endereco.estado && typeof endereco.estado === "string")
       clientes[indice].endereco.estado = endereco.estado;
     else if (typeof endereco.estado !== "string")
       return res.status(400).json({ mensagem: "Estado deve ser uma string" });
     if (endereco.cep) clientes[indice].endereco.cep = endereco.cep;
+    else if (typeof endereco.cep !== "string")
+      return res.status(400).json({ mensagem: "o cep deve ser uma string" });
     if (endereco.cidade) clientes[indice].endereco.cidade = endereco.cidade;
+    else if (typeof endereco.cidade !== "string")
+      return res
+        .status(400)
+        .json({ mensagem: "a requisição 'cidade' deve ser uma string" });
     if (endereco.bairro) clientes[indice].endereco.bairro = endereco.bairro;
+    else if (typeof endereco.bairro !== "string")
+      return res
+        .status(400)
+        .json({ mensagem: "a requisição 'bairro ' deve ser uma string" });
+
+    if (endereco.nome_da_rua)
+      clientes[indice].endereco.nome_da_rua = endereco.nome_da_rua;
+    else if (typeof endereco.nome_da_rua !== "string")
+      return res
+        .status(400)
+        .json({ mensagem: "a requisição 'nome_da_rua' deve ser uma string" });
+
     if (endereco.numero_da_casa)
       clientes[indice].endereco.numero_da_casa = endereco.numero_da_casa;
-
-    if (!endereco.bloco) {
+    else if (typeof endereco.numero_da_casa !== "string")
+      return res
+        .status(400)
+        .json({ mensagem: "o numero da cada deve-se ser uma string" });
+    if (endereco.bloco) {
       if (endereco.bloco) clientes[indice].endereco.bloco = endereco.bloco;
+      else if (typeof endereco.bloco !== "string")
+        return res
+          .status(400)
+          .json({ mensagem: "o bloco deve ser uma string" });
     }
   }
 
@@ -165,5 +193,10 @@ Read
 Update
 Delete
 */
+
+(async () => {
+  sequelize.sync({ alter: true });
+  console.log("Banco de dados sincronizado");
+})();
 
 app.listen(port, () => console.log(`Servidor rodando na porta ${port}`));
